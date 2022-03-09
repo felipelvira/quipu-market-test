@@ -1,0 +1,94 @@
+<ion-header>
+    <ion-toolbar color="warning">
+        <ion-title>Create new account</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="warning">
+    <form class="form" [formGroup]="userForm" (ngSubmit)="signUp(userForm.value)">
+
+        <ion-item color="warning">
+            <ion-label position="floating">First Name</ion-label>
+            <ion-input type="text" formControlName="firstName"></ion-input>
+        </ion-item>
+        <ng-container *ngFor="let error of error_msg.firstName">
+            <div *ngIf="userForm.get('firstName').hasError(error.type) && (userForm.get('firstName').dirty || userForm.get('firstName').touched)">
+                {{ error.message }}
+            </div>
+        </ng-container>
+
+        <ion-item color="warning">
+            <ion-label position="floating">Last Name</ion-label>
+            <ion-input type="text" formControlName="lastName"></ion-input>
+        </ion-item>
+        <ng-container *ngFor="let error of error_msg.lastName">
+            <div *ngIf="userForm.get('lastName').hasError(error.type) && (userForm.get('lastName').dirty || userForm.get('lastName').touched)">
+                {{ error.message }}
+            </div>
+        </ng-container>
+
+        <ion-list color="warning" style="padding-top: 0; padding-bottom: 0;">
+
+            <ion-item *ngFor="let item of GENDER_LIST; let i=index" color="warning">
+
+                <ion-label>{{item.name}}</ion-label>
+                <ion-checkbox slot="end" [value]="item.value" [checked]="item.checked" (ionChange)="onSelectionChange($event,i)">
+                </ion-checkbox>
+
+            </ion-item>
+
+
+            <ng-container *ngFor="let error of error_msg.gender">
+                <div *ngIf="userForm.get('gender').hasError(error.type)">
+                    {{ error.message }}
+                </div>
+            </ng-container>
+        </ion-list>
+
+
+
+        <ion-item color="warning">
+            <ion-label position="floating">Phone Number</ion-label>
+            <ion-input type="text" formControlName="phoneNumber"></ion-input>
+        </ion-item>
+        <ng-container *ngFor="let error of error_msg.phoneNumber">
+            <div *ngIf="userForm.get('phoneNumber').hasError(error.type) && (userForm.get('phoneNumber').dirty || userForm.get('phoneNumber').touched)">
+                {{ error.message }}
+            </div>
+        </ng-container>
+
+
+        <ion-item color="warning">
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="text" formControlName="email"></ion-input>
+        </ion-item>
+
+        <ng-container *ngFor="let error of error_msg.email">
+            <div *ngIf="userForm.get('email').hasError(error.type) && (userForm.get('email').dirty || userForm.get('email').touched)">
+                {{ error.message }}
+            </div>
+        </ng-container>
+
+        <ion-item color="warning">
+            <ion-label position="floating" color="primary">Password</ion-label>
+            <ion-input type="password" formControlName="password" class="form-controll" required></ion-input>
+        </ion-item>
+
+        <ng-container *ngFor="let error of error_msg.password">
+            <div *ngIf="userForm.get('password').hasError(error.type) && (userForm.get('password').dirty || userForm.get('password').touched)">
+                {{ error.message }}
+            </div>
+        </ng-container>
+
+        <ion-button type="submit" expand="block" [disabled]="!userForm.valid">Register</ion-button>
+
+        <ng-container color="danger">
+            <label class="ion-text-center">{{errorMsg}}</label>
+        </ng-container>
+
+        <ng-container color="success">
+            <label class="ion-text-center">{{successMsg}}</label>
+        </ng-container>
+    </form>
+    <p class="ion-text-center">Already registered? <a (click)="goToLogin()">Login</a></p>
+</ion-content>

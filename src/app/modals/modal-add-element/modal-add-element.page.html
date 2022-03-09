@@ -1,0 +1,44 @@
+<ion-header>
+    <!-- <ion-toolbar color="tertiary">
+        <ion-title>{{formTitle}}</ion-title>
+        <ion-button>
+            <ion-icon slot="icon-only" name="star"></ion-icon>
+        </ion-button>
+    </ion-toolbar> -->
+    <ion-toolbar color="tertiary">
+        <ion-buttons slot="secondary">
+            <ion-button color="danger" (click)="modalController.dismiss()">
+                CLOSE
+            </ion-button>
+        </ion-buttons>
+        <ion-title>{{formTitle}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="tertiary">
+    <form class="form" [formGroup]="itemForm" (ngSubmit)="addItem(itemForm.value)">
+
+        <ion-item color="tertiary">
+            <ion-label position="floating">Name</ion-label>
+            <ion-input type="text" formControlName="name"></ion-input>
+        </ion-item>
+
+        <ion-item color="tertiary">
+            <ion-label position="floating">Price</ion-label>
+            <ion-input type="text" formControlName="price" currency></ion-input>
+        </ion-item>
+
+        <ion-item color="tertiary">
+            <ion-label position="floating">Stock</ion-label>
+            <ion-input type="number" formControlName="stock"></ion-input>
+        </ion-item>
+        <ion-item color="tertiary">
+            <ion-label position="floating">Description</ion-label>
+            <ion-textarea formControlName="description" rows="3" cols="20" placeholder="Enter any description here...">
+            </ion-textarea>
+        </ion-item>
+
+        <ion-button type="submit" expand="block" color="warning" [disabled]="!itemForm.valid">Add item</ion-button>
+    </form>
+
+</ion-content>

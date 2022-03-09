@@ -1,3 +1,27 @@
-<ion-app>
+<!-- <ion-app>
   <ion-router-outlet></ion-router-outlet>
+</ion-app> -->
+
+
+<ion-app>
+    <ion-split-pane contentId="main-content">
+        <ion-menu contentId="main-content" type="overlay">
+            <ion-content>
+                <ion-list id="inbox-list">
+                    <ion-list-header>
+                        <h1> {{userFB.displayName}} </h1>
+                    </ion-list-header>
+                    <ion-menu-toggle auto-hide="false">
+                        <ion-item (click)="logout()">
+                            <ion-icon name="log-out-outline" item-left></ion-icon>
+                            <ion-label>
+                                Log out
+                            </ion-label>
+                        </ion-item>
+                    </ion-menu-toggle>
+                </ion-list>
+            </ion-content>
+        </ion-menu>
+        <ion-router-outlet id="main-content"></ion-router-outlet>
+    </ion-split-pane>
 </ion-app>

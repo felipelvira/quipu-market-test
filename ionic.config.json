@@ -1,5 +1,7 @@
 {
   "name": "interview-ionic-senior",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
